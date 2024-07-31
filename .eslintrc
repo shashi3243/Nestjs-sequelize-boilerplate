@@ -1,0 +1,53 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "root": true,
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module",
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
+  "ignorePatterns": ["node_modules/", "dist/","test/"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "airbnb-base",
+    "prettier",
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "@typescript-eslint/naming-convention": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "prettier/prettier": "off",
+    "no-console": "error",
+    "no-duplicate-imports": "error",
+    "no-dupe-class-members": "error",
+    "no-extra-boolean-cast": "error",
+    "no-unused-expressions": "error",
+    "no-unused-vars": "error",
+    "no-use-before-define": "off",
+    "import/no-extraneous-dependencies": ["off"],
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"],
+      },
+    },
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+  },
+  "overrides": [
+    {
+      "files": ["src/shared/language/*.ts","src/shared/interface/env.interface.ts"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off",
+      },
+    },
+  ],
+}
