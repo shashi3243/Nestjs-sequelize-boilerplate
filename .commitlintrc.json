@@ -1,7 +1,7 @@
 {
   "extends": ["@commitlint/config-conventional"],
   "rules": {
-    "type-enum": [2, "always", ["Fix", "Add", "Remove"]],
+    "type-enum": [2, "always", ["fix", "add", "remove"]],
     "subject-case": [2, "always", "sentence-case"]
   }
 }

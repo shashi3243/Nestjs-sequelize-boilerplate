@@ -30,6 +30,9 @@
     "import/no-extraneous-dependencies": ["off"],
     "import/prefer-default-export": "off",
     "import/extensions": "off",
+    "no-useless-constructor":"off",
+    "class-methods-use-this":"off",
+    "no-empty-function":"off"
   },
   "settings": {
     "import/resolver": {
@@ -47,6 +50,12 @@
       "files": ["src/shared/language/*.ts","src/shared/interface/env.interface.ts"],
       "rules": {
         "@typescript-eslint/naming-convention": "off",
+      },
+    },
+    {
+      "files": ["src/shared/service/sheduler.service.ts","src/shared/utils/util.service.ts" ],
+      "rules": {
+        "class-methods-use-this": "off",
       },
     },
   ],

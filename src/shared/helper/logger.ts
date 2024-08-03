@@ -1,14 +1,14 @@
-import { format, transports } from 'winston';
+import { format, transports, addColors } from 'winston';
 import * as winston from 'winston';
-import { addColors } from 'winston/lib/winston/config';
 import DailyRotateFile from 'winston-daily-rotate-file';
-import * as path from 'path';
+import { UtilService } from '../utils/util.service';
+
+const { resolveSrcPath } = new UtilService();
 
 const LOGGER_MSG_COLORS = {
   error: 'bold red',
-  warn: 'italic cyan',
+  warn: 'green',
   info: 'yellow',
-  debug: 'magenta',
 };
 
 addColors(LOGGER_MSG_COLORS);
@@ -29,15 +29,13 @@ function createLogger(
     transports: transport,
   });
 }
+
 // Function to create a daily rotating logger
 function dailyLogger(object: { name: string }) {
   const { name } = object;
   const transport = [
     new DailyRotateFile({
-      filename: path.join(
-        __dirname,
-        `../../../src/shared/logs/%DATE%/${name}.log`
-      ),
+      filename: `${resolveSrcPath('shared', 'logs')}/%DATE%/${name}.log`,
       datePattern,
       maxFiles: '5d',
     }),
@@ -50,7 +48,18 @@ function consoleLogger() {
     new transports.Console({
       format: format.combine(
         format.printf((msg) =>
-          colorizer.colorize(msg.level, `${msg.timestamp} - ${msg.message}`)
+          colorizer.colorize(
+            msg.level,
+            `${new Date().toLocaleString('en-US', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+              hour12: true,
+            })} | ${msg.message}`
+          )
         )
       ),
     }),

@@ -1,6 +1,7 @@
 import { loggerService } from '../helper';
-import { jsonToString } from '../utils';
+import { UtilService } from '../utils/util.service';
 
+const { jsonToString } = new UtilService();
 export const loggerErrorMessage = (
   type: string,
   object: { error: unknown }

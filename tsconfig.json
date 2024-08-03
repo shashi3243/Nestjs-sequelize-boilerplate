@@ -21,5 +21,11 @@
     "esModuleInterop": true
   },
   "include": ["src/**/*", "liquebase.ts"],
-  "exclude": ["node_modules", "dist", "migration", "commitlint.config.js"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "migration",
+    "commitlint.config.js",
+    "package.*json"
+  ]
 }
